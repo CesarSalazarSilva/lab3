@@ -91,13 +91,13 @@ typedef struct Lista{
 		}	
 	}
 	//retorna un nodo dada una posicion.
-	Lista * rtrNodo(Lista ** cabeza, int posicion){
-		if (posicion < largoL(cabeza)){
+	Lista * rtrNodo(Lista ** cabeza, int posicion, int largo){
+		if (posicion < largo + 1){
 			int contador = 1;
 			Lista * aux = *cabeza;
-			while( contador <= posicion){
-				contador +=1;
+			while( contador < posicion){
 				aux = aux->sig;
+				contador +=1;
 			}
 			return aux;
 		}else{
@@ -108,112 +108,50 @@ typedef struct Lista{
 	//Cambiar nodos, el control de indices debe hacerse en el llamado
 	// de la funcion.
 
-	void swapnodosL(Lista ** cabeza, int indice1, int indice2){
+	void swapnodosL(Lista ** cabeza, int indice1, int indice2, int largo){
 		if (*cabeza != NULL){
-			int largo = largoL(cabeza);
-			if (indice1 <= largo && indice2 <= largo){
+			//Utilizaremos este temporal para intercambiar nodos.
+			
+			if (indice1 < largo +1 && indice2 < largo +1){
 				//Evitar doble trabajo más adelante
-				Lista * pi1 = rtrNodo(cabeza,indice1);
-				Lista * pi2 = rtrNodo(cabeza,indice2);
+				Lista * pi1 = rtrNodo(cabeza,indice1,largo);
+				Lista * pi2 = rtrNodo(cabeza,indice2,largo);
+				int idato1 = pi1->dato;
+				int idato2 = pi1->dato2;
 
-				Lista * pSi1 = pi1->sig;
-				Lista * pSi2 = pi2->sig;
+				int sdato1 = pi2->dato;
+				int sdato2 = pi2->dato2;
 
-				//Caso con cabeza
-				if (indice1 == 1 || indice2 == 1){
-					if (indice1 == 1){
-						Lista * pAi2 = rtrNodo(cabeza,indice2-1);
-						
-						pAi2->sig = pi1;
-						pi1->sig  = pSi2;
+				pi1->dato = sdato1;
+				pi1->dato2 = sdato2;
 
-						pi1  = pi2;
-						pi2->sig  = pSi1;
-
-						
-						
-						
-					//Caso indice2 = 1
-					}else{
-						Lista * pAi1 = rtrNodo(cabeza,indice1-1);
-
-						*cabeza  = pi1;
-						(*cabeza)->sig  = pSi2;
-
-						pAi1->sig = pi2;
-						pi2->sig  = pSi1; 
-						
-						
-					}
-				//Caso ninguno es cabeza	
-				}else{
-					Lista * pAi1 = rtrNodo(cabeza,indice1-1);
-					Lista * pAi2 = rtrNodo(cabeza,indice2-1);
-					pAi2->sig = pi1;
-					pi1->sig  = pSi2;
-					pAi1->sig = pi2;
-					pi2->sig  = pSi1;
-					
-				}
+				pi2->dato = idato1;
+				pi2->dato2 = idato2;
+				
 			}
 		}else{
 			printf("La lista es nula o indices fuera de rango, no se ha logrado el swap\n");
 		}
-		/*if (posicion == 1 && posicion < largoL(cabeza)){
-			Lista * primero = *cabeza;
-			Lista * segundo = (*cabeza)->sig;
-			Lista * tercero = (((*cabeza)->sig)->sig);
-			*cabeza = segundo;
-			segundo->sig = primero;
-			primero->sig = tercero;
-		}else{
-			if (posicion < largoL(cabeza)){
-				int contador = 1;
-				Lista * aux = *cabeza;
-				while( contador < posicion-1){
-					contador +=1;
-					aux = aux->sig;
-				}
-				//Cambios. inicio :a->x->y->b final : a->y->x->b 
-				Lista * tempa = aux;
-				Lista * tempx = (aux)->sig;
-				Lista * tempy = ((aux)->sig)->sig;
-				Lista * tempb = (((aux)->sig)->sig)->sig;
-
-				tempa->sig = tempy;
-				tempy->sig = tempx;
-				tempx->sig = tempb;	
-			}else{
-				printf("No se pudo hacer Swap, dado que es el ultimo elemento de la lista o la posicion no existe.\n");
-			}
-		}*/
+		
 	}
 
 	//Ordenar segun:
-		/*void ordenarMayorMenorDatoL(Lista ** cabeza){
+		void ordenarMayorMenorDatoL(Lista ** cabeza){
 			Lista * temporal1;
 			Lista * temporal2;
 			int largo = largoL(cabeza);
 
-			for (int i = 1; i < largo-1; i++){
-				printf("PASO\n");
-				for (int j = i+1; j < largo; j++){
+			for (int i = 2; i < largo+1; i++){
+				for (int j = 1; j < largo; j++){
 
-					temporal1 = rtrNodo(cabeza,i);
-					temporal2 = rtrNodo(cabeza,j);
-					
-					printf(" 1. %d  2. %d\n",temporal1->dato,temporal2->dato );
-					if ((temporal1->dato) > (temporal2->dato) ){
-						printf("YES\n");
-						swapnodosL(cabeza,i);
+					temporal1 = rtrNodo(cabeza,j,largo);
+					temporal2 = rtrNodo(cabeza,j+1,largo);
+
+					if ((temporal1->dato) < (temporal2->dato) ){
+						swapnodosL(cabeza,j,j+1,largo);
 					}
 				}
-			}
-			
-		}*/
-
-		void ordenarMayorMenorDato2L(Lista ** cabeza){
-
+			}	
 		}
 
 	//Imprimir arreglo
@@ -230,16 +168,16 @@ int main(int argc, char const *argv[])
 	Lista * x = crearNL();
 	Lista * y = crearNL();
 	Lista * z = crearNL();
-	x->dato = 5;
-	x->dato2 =15; 
+	x->dato = 7;
+	x->dato2 =17; 
 	x->sig = y;
 
-	y->dato = 6;
-	y->dato2 = 16; 
+	y->dato = 4;
+	y->dato2 = 14; 
 	y->sig = z;
 
-	z->dato = 7;
-	z->dato2 =17; 
+	z->dato = 5;
+	z->dato2 =15; 
 	z->sig = NULL;
 
 	Lista * nuevo = crearNL();
@@ -266,11 +204,11 @@ int main(int argc, char const *argv[])
 	imprimir(x);
 	printf("\n");
 
-	printf("Nuevo Antes swap %d\n",largoL(&x));
+
+	printf("Nuevo Antes ordenar %d\n",largoL(&x));
 	imprimir(x);
-	printf("%p blabla\n",x );
-	swapnodosL(&x,1,3);
-	printf("Nuevo Despues swap %d\n",largoL(&x));
+	ordenarMayorMenorDatoL(&x);
+	printf("Nuevo Despues ordenar %d\n",largoL(&x));
 	imprimir(x);
 	printf("\n");
 
@@ -301,39 +239,12 @@ int main(int argc, char const *argv[])
 	printf("Nuevo Despues swap de %d\n",largoL(&x));
 	imprimir(x);
 	printf("\n");*/
-
-
-	
 	return 0;
 }
 
 
-
 /*
-gcc -Wall programa.c -o programa -lm
+	codigo compilacion
+	gcc -Wall x.c -o x -lm
 
-//Prueba 1
-struct nodoVecino a,b,c,d;
-	a.id = 1;
-	a.sig = &b;
-	b.id = 2;
-	b.sig = &c;
-	c.id = 3;
-	c.sig = &d;
-	d.id = 4;
-	d.sig = NULL;
-
-	struct nodo nodo1,nodo2,nodo3;
-	nodo1.id = 1;
-	nodo1.sig = &nodo2;
-	nodo1.sigV = &a;
-
-	nodo2.id = 2;
-	nodo2.sig = &nodo3;
-	nodo2.sigV = &b;
-
-	nodo3.id = 3;
-	nodo3.sig = NULL;
-	nodo3.sigV = &c;
-	//OrdenDeNodosPorPeso(&nodo1,3);
 */
