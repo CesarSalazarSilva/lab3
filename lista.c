@@ -306,3 +306,34 @@ int main(int argc, char const *argv[])
 	
 	return 0;
 }
+
+
+
+/*
+gcc -Wall programa.c -o programa -lm
+
+//Prueba 1
+struct nodoVecino a,b,c,d;
+	a.id = 1;
+	a.sig = &b;
+	b.id = 2;
+	b.sig = &c;
+	c.id = 3;
+	c.sig = &d;
+	d.id = 4;
+	d.sig = NULL;
+
+	struct nodo nodo1,nodo2,nodo3;
+	nodo1.id = 1;
+	nodo1.sig = &nodo2;
+	nodo1.sigV = &a;
+
+	nodo2.id = 2;
+	nodo2.sig = &nodo3;
+	nodo2.sigV = &b;
+
+	nodo3.id = 3;
+	nodo3.sig = NULL;
+	nodo3.sigV = &c;
+	//OrdenDeNodosPorPeso(&nodo1,3);
+*/
