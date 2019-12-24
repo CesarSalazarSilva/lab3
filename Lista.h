@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
 typedef struct Lista{
 	int dato;
 	int dato2;
@@ -125,8 +123,7 @@ typedef struct Lista{
 				pi1->dato2 = sdato2;
 
 				pi2->dato = idato1;
-				pi2->dato2 = idato2;
-				
+				pi2->dato2 = idato2;	
 			}
 		}else{
 			printf("La lista es nula o indices fuera de rango, no se ha logrado el swap\n");
@@ -146,6 +143,24 @@ typedef struct Lista{
 					temporal2 = rtrNodo(cabeza,j+1,largo);
 
 					if ((temporal1->dato) < (temporal2->dato) ){
+						swapnodosL(cabeza,j,j+1,largo);
+					}
+				}
+			}	
+		}
+
+		void ordenarMayorMenorDato2L(Lista ** cabeza){
+			Lista * temporal1;
+			Lista * temporal2;
+			int largo = largoL(cabeza);
+
+			for (int i = 2; i < largo+1; i++){
+				for (int j = 1; j < largo; j++){
+
+					temporal1 = rtrNodo(cabeza,j,largo);
+					temporal2 = rtrNodo(cabeza,j+1,largo);
+
+					if ((temporal1->dato2) < (temporal2->dato2) ){
 						swapnodosL(cabeza,j,j+1,largo);
 					}
 				}
