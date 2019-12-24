@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <math.h>
+
+
 
 typedef struct Lista{
 	int dato;
@@ -105,13 +105,12 @@ typedef struct Lista{
 			return NULL;
 		}
 	}
-	//Cambiar nodos, el control de indices debe hacerse en el llamado
-	// de la funcion.
 
+	//Cambiar valor en nodos, el control de indices debe hacerse en el llamado
+	// de la funcion.
 	void swapnodosL(Lista ** cabeza, int indice1, int indice2, int largo){
 		if (*cabeza != NULL){
-			//Utilizaremos este temporal para intercambiar nodos.
-			
+			//Utilizaremos este temporal para intercambiar nodos.	
 			if (indice1 < largo +1 && indice2 < largo +1){
 				//Evitar doble trabajo más adelante
 				Lista * pi1 = rtrNodo(cabeza,indice1,largo);
@@ -131,8 +130,7 @@ typedef struct Lista{
 			}
 		}else{
 			printf("La lista es nula o indices fuera de rango, no se ha logrado el swap\n");
-		}
-		
+		}	
 	}
 
 	//Ordenar segun:
@@ -163,84 +161,6 @@ typedef struct Lista{
 	   	}
 	}	  	 
 
-int main(int argc, char const *argv[])
-{
-	Lista * x = crearNL();
-	Lista * y = crearNL();
-	Lista * z = crearNL();
-	x->dato = 7;
-	x->dato2 =17; 
-	x->sig = y;
-
-	y->dato = 4;
-	y->dato2 = 14; 
-	y->sig = z;
-
-	z->dato = 5;
-	z->dato2 =15; 
-	z->sig = NULL;
-
-	Lista * nuevo = crearNL();
-	nuevo->dato = 4;
-	nuevo->dato2 = 14;
-
-	Lista * nuevo2 = crearNL();
-	nuevo2->dato = 3;
-	nuevo2->dato2 = 13;
-
-	/*Lista * nuevo3 = crearNL();*/
-	
-	printf("Nuevo Antes i de %d\n",largoL(&x));
-	imprimir(x);
-	insertarIL(&x, nuevo);
-	printf("Nuevo Despues i de %d\n",largoL(&x));
-	imprimir(x);
-	printf("\n");
-
-	printf("Nuevo Antes f de %d\n",largoL(&x));
-	imprimir(x);
-	insertarFL(&x,nuevo2);
-	printf("Nuevo Despues f de %d\n",largoL(&x));
-	imprimir(x);
-	printf("\n");
-
-
-	printf("Nuevo Antes ordenar %d\n",largoL(&x));
-	imprimir(x);
-	ordenarMayorMenorDatoL(&x);
-	printf("Nuevo Despues ordenar %d\n",largoL(&x));
-	imprimir(x);
-	printf("\n");
-
-	/*printf("Nuevo Antes f de %d\n",largoL(&x));
-	imprimir(x);
-	eliminarIL(&x);
-	printf("Nuevo Despues f de %d\n",largoL(&x));
-	imprimir(x);
-	printf("\n");
-
-	printf("Nuevo Antes f de %d\n",largoL(&x));
-	imprimir(x);
-	eliminarFL(&x);
-	printf("Nuevo Despues f de %d\n",largoL(&x));
-	imprimir(x);
-	printf("\n");
-
-	printf("Nuevo Antes swap de %d\n",largoL(&x));
-	imprimir(x);
-	swapnodosL(&x, 1);
-	printf("Nuevo Despues swap de %d\n",largoL(&x));
-	imprimir(x);
-	printf("\n");
-
-	printf("Nuevo Antes swap de %d\n",largoL(&x));
-	imprimir(x);
-	ordenarMayorMenorDatoL(&x);
-	printf("Nuevo Despues swap de %d\n",largoL(&x));
-	imprimir(x);
-	printf("\n");*/
-	return 0;
-}
 
 
 /*

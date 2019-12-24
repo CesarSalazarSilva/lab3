@@ -3,6 +3,8 @@
 #include <string.h>
 #include <math.h>
 
+#include "Lista.h"
+
 //Estuctura para Grafo, nodo vecino con su respectivo peso.
 struct nodoVecino{
 	int id;
@@ -167,38 +169,49 @@ void OrdenDeNodosPorPeso(struct nodo * listadeNodos, int cantidadNodos){
 }
 
 int main(int argc, char const *argv[]){
-	struct Lista  x,y,z,m;
-	x.dato =1;
-	x.dato2 =11; 
-	x.sig =&y;
+	Lista * x = crearNL();
+	Lista * y = crearNL();
+	Lista * z = crearNL();
+	x->dato = 7;
+	x->dato2 =17; 
+	x->sig = y;
 
-	y.dato =2;
-	y.dato2 =12; 
-	y.sig =&z;
+	y->dato = 4;
+	y->dato2 = 14; 
+	y->sig = z;
 
-	z.dato =3;
-	z.dato2 =13; 
-	z.sig = NULL;
-	imprimirNL(&x);
-	printf("Again\n");
-	imprimirNL(&x);
+	z->dato = 5;
+	z->dato2 =15; 
+	z->sig = NULL;
 
-	m.dato =7;
-	m.dato2 =7; 
-	m.sig = NULL;
+	Lista * nuevo = crearNL();
+	nuevo->dato = 4;
+	nuevo->dato2 = 14;
 
-	struct Lista * nueva;
-	nueva = insertarNL(&x,0,&m);
-	printf("Nueva 0 \n");
-	imprimirNL(nueva);
+	Lista * nuevo2 = crearNL();
+	nuevo2->dato = 3;
+	nuevo2->dato2 = 13;
+	
+	printf("Nuevo Antes i de %d\n",largoL(&x));
+	imprimir(x);
+	insertarIL(&x, nuevo);
+	printf("Nuevo Despues i de %d\n",largoL(&x));
+	imprimir(x);
+	printf("\n");
 
-	nueva = insertarNL(&x,1,&m);
-	printf("Nueva 1 \n");
-	imprimirNL(nueva);
+	printf("Nuevo Antes f de %d\n",largoL(&x));
+	imprimir(x);
+	insertarFL(&x,nuevo2);
+	printf("Nuevo Despues f de %d\n",largoL(&x));
+	imprimir(x);
+	printf("\n");
 
-	nueva = insertarNL(&x,2,&m);
-	printf("Nueva 0 \n");
-	imprimirNL(nueva);
+	printf("Nuevo Antes ordenar %d\n",largoL(&x));
+	imprimir(x);
+	ordenarMayorMenorDatoL(&x);
+	printf("Nuevo Despues ordenar %d\n",largoL(&x));
+	imprimir(x);
+	printf("\n");
 
 
 

@@ -1,0 +1,64 @@
+lista.c
+/*  printf("Nuevo Antes f de %d\n",largoL(&x));
+	imprimir(x);
+	eliminarIL(&x);
+	printf("Nuevo Despues f de %d\n",largoL(&x));
+	imprimir(x);
+	printf("\n");
+
+	printf("Nuevo Antes f de %d\n",largoL(&x));
+	imprimir(x);
+	eliminarFL(&x);
+	printf("Nuevo Despues f de %d\n",largoL(&x));
+	imprimir(x);
+	printf("\n");
+
+	printf("Nuevo Antes swap de %d\n",largoL(&x));
+	imprimir(x);
+	swapnodosL(&x, 1);
+	printf("Nuevo Despues swap de %d\n",largoL(&x));
+	imprimir(x);
+	printf("\n");
+
+	printf("Nuevo Antes swap de %d\n",largoL(&x));
+	imprimir(x);
+	ordenarMayorMenorDatoL(&x);
+	printf("Nuevo Despues swap de %d\n",largoL(&x));
+	imprimir(x);
+	printf("\n");
+	*/
+
+lab.c
+/*  struct Lista  x,y,z,m;
+	x.dato =1;
+	x.dato2 =11; 
+	x.sig =&y;
+
+	y.dato =2;
+	y.dato2 =12; 
+	y.sig =&z;
+
+	z.dato =3;
+	z.dato2 =13; 
+	z.sig = NULL;
+	imprimirNL(&x);
+	printf("Again\n");
+	imprimirNL(&x);
+
+	m.dato =7;
+	m.dato2 =7; 
+	m.sig = NULL;
+
+	struct Lista * nueva;
+	nueva = insertarNL(&x,0,&m);
+	printf("Nueva 0 \n");
+	imprimirNL(nueva);
+
+	nueva = insertarNL(&x,1,&m);
+	printf("Nueva 1 \n");
+	imprimirNL(nueva);
+
+	nueva = insertarNL(&x,2,&m);
+	printf("Nueva 0 \n");
+	imprimirNL(nueva); 
+	*/

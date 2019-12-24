@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 
+
 int sumarXvalor(int a,int b);
 void sumarXreferencia(int a,int b,int *resultado);
  
