@@ -7,7 +7,8 @@ typedef struct Lista{
 	struct Lista * sig;
 }Lista;
 
-//TDA Lista
+//TDA para estructura Lista
+
 	//Crear Nodo.
 	Lista * crearNL(){
 		//Solicitamos La memoria para el nodo.
@@ -130,56 +131,33 @@ typedef struct Lista{
 		}	
 	}
 
-	//Ordenar segun:
-		void ordenarMayorMenorDatoL(Lista ** cabeza){
-			Lista * temporal1;
-			Lista * temporal2;
-			int largo = largoL(cabeza);
+	void ordenarMayorMenorL(Lista ** cabeza, int modo){
+		Lista * temporal1;
+		Lista * temporal2;
+		int largo = largoL(cabeza);
 
-			for (int i = 2; i < largo+1; i++){
-				for (int j = 1; j < largo; j++){
-
-					temporal1 = rtrNodo(cabeza,j,largo);
-					temporal2 = rtrNodo(cabeza,j+1,largo);
-
+		for (int i = 2; i < largo+1; i++){
+			for (int j = 1; j < largo; j++){
+				temporal1 = rtrNodo(cabeza,j,largo);
+				temporal2 = rtrNodo(cabeza,j+1,largo);
+				if (modo == 1){
 					if ((temporal1->dato) < (temporal2->dato) ){
 						swapnodosL(cabeza,j,j+1,largo);
 					}
-				}
-			}	
-		}
-
-		void ordenarMayorMenorDato2L(Lista ** cabeza){
-			Lista * temporal1;
-			Lista * temporal2;
-			int largo = largoL(cabeza);
-
-			for (int i = 2; i < largo+1; i++){
-				for (int j = 1; j < largo; j++){
-
-					temporal1 = rtrNodo(cabeza,j,largo);
-					temporal2 = rtrNodo(cabeza,j+1,largo);
-
+				}else if (modo == 2){
 					if ((temporal1->dato2) < (temporal2->dato2) ){
 						swapnodosL(cabeza,j,j+1,largo);
 					}
 				}
-			}	
-		}
+			}
+		}	
+	}
 
 	//Imprimir arreglo
-	void imprimir(Lista * cabeza){
+	void imprimirL(Lista * cabeza){
 	   	Lista * aux = cabeza;
 		while (aux != NULL){
 	      	printf("%d\n", aux->dato);
 	      	aux = aux->sig;
 	   	}
 	}	  	 
-
-
-
-/*
-	codigo compilacion
-	gcc -Wall x.c -o x -lm
-
-*/
