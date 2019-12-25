@@ -23,14 +23,29 @@ void lecturaGrafo(Nodo ** cabeza){
 		printf("\n No hay ningun archivo con el nombre indicado. \n");
 	}else{
 		//Extraemos cantidad de nodos
-		int cantidadNodos,idnodo,peso;
+		int contador,cantidadNodos,idnodo,peso;
 		char verificador;
+		fscanf(archivo, "%i,%i%c", &cantidadNodos,&peso,&verificador);
+		printf("%dblabla\n",cantidadNodos );
 
-		for (int i = 0; i < 21; ++i){
-			fscanf(archivo, "%i,%i,%c. ", &idnodo,&peso,&verificador);
+		contador = 0;
 
-			printf("%i,%i,%c.\n",idnodo,peso,verificador );
+		while(fscanf(archivo, "%i,%i%c", &idnodo,&peso,&verificador) > 0){
+			Nodo * aux;
+			aux = crearNN();
+			//Asignamos id
+			aux->id = contador;
 
+			if (verificador == ' '){
+				printf("Espacio ");
+				printf("%i,%i.\n",idnodo,peso);
+			}else{
+				printf("Salto de linea ");
+				printf("%i,%i.\n",idnodo,peso);
+			}
+
+			//printf("%i,%i,%c.\n",idnodo,peso,verificador );
+			contador++;
 		}
 		//Asignamos memoria para la lista de cabeceras
 		/*Nodo * aux;
