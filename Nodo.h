@@ -8,22 +8,21 @@ typedef struct Nodo{
 	struct Nodo *sig;	
 }Nodo; 
 
-//TDA Para estructura nodo.
+//TDA Grafo, Matriz dispersa .
 	//Crear Nodo
 	Nodo * crearNN(){
-			//Solicitamos La memoria para el nodo.
-			Nodo * nodo = (Nodo *)malloc(sizeof(Nodo));
-			if (nodo != NULL){
-				nodo->id = 0;
-				nodo->sig  = NULL;
-				nodo->sigL = NULL;
-				return nodo;
-			}else{
-				printf("Memoria llena, no se puede crear nodo.");
-				return NULL;
-			}
+		//Solicitamos La memoria para el nodo.
+		Nodo * nodo = (Nodo *)malloc(sizeof(Nodo));
+		if (nodo != NULL){
+			nodo->id = 0;
+			nodo->sig  = NULL;
+			nodo->sigL = NULL;
+			return nodo;
+		}else{
+			printf("Memoria llena, no se puede crear nodo.");
+			return NULL;
 		}
-
+	}
 	//Insertar Nodo por la cabeza
 	void insertarIN(Nodo ** cabeza, Nodo * nodo){
 		if (*cabeza != NULL){
@@ -90,11 +89,13 @@ typedef struct Nodo{
 			return 0;
 		}	
 	}
-	//Imprimir arreglo
+	//Imprimir Grafo
 	void imprimirN(Nodo * cabeza){
 	   	Nodo * aux = cabeza;
 		while (aux != NULL){
-	      	printf("%d\n", aux->id);
+	      	printf("%d .- ", aux->id);
+	      	imprimirL(aux->sigL);
+	      	printf("\n");
 	      	aux = aux->sig;
 	   	}
 	}	

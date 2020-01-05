@@ -7,7 +7,7 @@ typedef struct Lista{
 	struct Lista * sig;
 }Lista;
 
-//TDA para estructura Lista
+//TDA Lista
 
 	//Crear Nodo.
 	Lista * crearNL(){
@@ -89,7 +89,7 @@ typedef struct Lista{
 			return 0;
 		}	
 	}
-	//retorna un nodo dada una posicion.
+	//Retorna un nodo dada una posicion.
 	Lista * rtrNodo(Lista ** cabeza, int posicion, int largo){
 		if (posicion < largo + 1){
 			int contador = 1;
@@ -104,9 +104,7 @@ typedef struct Lista{
 			return NULL;
 		}
 	}
-
-	//Cambiar valor en nodos, el control de indices debe hacerse en el llamado
-	// de la funcion.
+	//Cambiar valor entre nodos *NOTA HACER CONTROL DE INDICES*
 	void swapnodosL(Lista ** cabeza, int indice1, int indice2, int largo){
 		if (*cabeza != NULL){
 			//Utilizaremos este temporal para intercambiar nodos.	
@@ -130,7 +128,7 @@ typedef struct Lista{
 			printf("La lista es nula o indices fuera de rango, no se ha logrado el swap\n");
 		}	
 	}
-
+	//Funcion que ordena una lista de mayor a menor dependiendo de dato o dato2
 	void ordenarMayorMenorL(Lista ** cabeza, int modo){
 		Lista * temporal1;
 		Lista * temporal2;
@@ -152,12 +150,11 @@ typedef struct Lista{
 			}
 		}	
 	}
-
 	//Imprimir arreglo
 	void imprimirL(Lista * cabeza){
 	   	Lista * aux = cabeza;
 		while (aux != NULL){
-	      	printf("%d\n", aux->dato);
+	      	printf("%d,%d ", aux->dato,aux->dato2);
 	      	aux = aux->sig;
 	   	}
 	}	  	 
