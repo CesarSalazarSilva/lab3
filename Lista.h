@@ -8,7 +8,6 @@ typedef struct Lista{
 }Lista;
 
 //TDA Lista
-
 	//Crear Nodo.
 	Lista * crearNL(){
 		//Solicitamos La memoria para el nodo.
@@ -158,3 +157,4 @@ typedef struct Lista{
 	      	aux = aux->sig;
 	   	}
 	}	  	 
+

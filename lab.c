@@ -107,6 +107,10 @@ void rutaConMenorCosto(Nodo ** cabeza, Lista ** datosDijktra){
 		insertarFL(datosDijktra,auxL);
 		auxG = auxG->sig;
 	}
+	
+
+
+
 }
 
 int main(int argc, char const *argv[]){
@@ -140,10 +144,11 @@ int main(int argc, char const *argv[]){
 		//Algoritmo de Dijktra
 		//Se tendrá asumido que el id del nodo estará relacionado con su posicion.
 		printf("\n--------------------------------------------------------------------------\n");
-		printf("Contenedor de Algoritmo de Dijktra:\n");
-		Lista * datosDijktra = NULL;
-		rutaConMenorCosto(&cabeza,&datosDijktra);
-		imprimirL(datosDijktra);
+		printf("Rellenar :\n");
+		inTemp(&cabeza);
+		imprimirDij(cabeza);
+		Nodo * menor = menorTempSinFinal(&cabeza);
+		printf("\n ++++ %d menor\n", menor->dijTemporal);
 		printf("\n--------------------------------------------------------------------------\n");
 
 	return 0;

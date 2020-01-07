@@ -3,6 +3,11 @@
 
 typedef struct Nodo{
 	int id;
+	//Valores para almacenar recorrido algoritmo de dijktra
+	int dijFinal;
+	int dijTemporal;
+	int dijID;
+
 	Lista *sigL;
 
 	struct Nodo *sig;	
@@ -15,6 +20,10 @@ typedef struct Nodo{
 		Nodo * nodo = (Nodo *)malloc(sizeof(Nodo));
 		if (nodo != NULL){
 			nodo->id = 0;
+			//Valores de dijktra considerados nulos
+			nodo->dijFinal    = -1000;
+			nodo->dijTemporal = -1000;
+			nodo->dijID       = -1000;
 			nodo->sig  = NULL;
 			nodo->sigL = NULL;
 			return nodo;
@@ -99,5 +108,57 @@ typedef struct Nodo{
 	      	aux = aux->sig;
 	   	}
 	}	
+
+
+//Funcion Particular para Dijktra
+	//dijFinal   -------- valor final.
+	//dijTemporal-------- valor temporal.
+	//dijId      -------- Id del nodo del que viene
+	//Estos valores tendran el valor -1000 para indicar null.
+
+	//Encontrar menor sin temporal
+	Nodo * menorTempSinFinal(Nodo ** cabeza){
+		Nodo * aux = *cabeza;
+		Nodo * menor = *cabeza;
+		while(aux!= NULL){
+			if (aux->dijFinal == -1000 && aux->dijTemporal < menor->dijTemporal){
+				menor = aux;
+			}
+			aux = aux->sig;
+		}
+		return menor;
+	}
+
+	//Rellenar lista temporal
+	void inTemp(Nodo ** cabeza){
+		int numero = 0;
+		Nodo * aux = *cabeza;
+		while(aux!= NULL){
+			printf("\nIntroduzca un numero entero: ");
+    		scanf("%d", &numero);
+    		printf("\n");
+			aux->dijTemporal = numero;
+			aux = aux->sig;
+		}
+	}
+	//Imprimir temporal 
+	void imprimirDij(Nodo * cabeza){
+		Nodo * aux	= cabeza;
+		printf("\n");
+		while(aux!=NULL){
+			printf("%d ", aux->dijTemporal);
+	      	aux = aux->sig;
+		}
+		printf("\n");
+	}
+
+	//FuncionAlgoritmoDijktra
+	void dijktra(Nodo ** cabeza){
+		//Debemos recorrer y verificar hasta el nodo final
+
+	}
+
+
+
 
 
